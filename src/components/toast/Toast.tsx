@@ -26,7 +26,6 @@ const Toast = ({ toast, removeToast } : ToastProps) => {
   `;
 
   useEffect(() => {
-    console.log(toast)
     const timer = setTimeout(() => {
       setVisible(false);
       setTimeout(() => {

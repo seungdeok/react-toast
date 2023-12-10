@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 #toast-root {
@@ -13,26 +15,11 @@
   gap: 16px;
 }
 
-.Toast {
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  width: 320px;
-  height: 64px;
-  padding: 12px 20px;
-
-  border-radius: 32px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
-  background: #080a0d;
-  color: #fff;
-}
-
 /* toastSample3 */
 .toast-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   position: fixed;
   left: 16px;
   top: 16px;
@@ -43,19 +30,16 @@
 
 .toast {
   will-change: transform;
-  transition: all 0.3s ease;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
   width: 180px;
   height: 45px;
   border-radius: 8px;
   border: 2px solid #FFF;
-  position: relative;
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  bottom: 0px;
 }
 
 .toast.toast-success {

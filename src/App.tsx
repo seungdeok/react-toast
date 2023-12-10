@@ -1,17 +1,19 @@
+import { type } from "os";
 import "./App.css";
 import ToastContainer from "./components/toast/ToastContainer";
-import useToast3 from "./components/toast/useToast";
+import useToast from "./components/toast/useToast";
 
 function App() {
-  // sample3
-  const { toasts, addToast, removeToast } = useToast3();
+  const { toasts, addToast, removeToast } = useToast();
   
   return (
     <div className="App">
       <div>
-        <button onClick={() => addToast("Toast!!!")}>Show Toast</button>
-        <ToastContainer toasts = {toasts} removeToast = {removeToast}/>
+        <button onClick={() => addToast("Toast!!!", "info")}>Show Toast#1</button>
+        <button onClick={() => addToast("Toast!!!", "error")}>Show Toast#2</button>
+        <button onClick={() => addToast("Toast!!!", "success")}>Show Toast#3</button>
       </div>
+      <ToastContainer toasts = {toasts} removeToast = {removeToast}/>
     </div>
   );
 }
