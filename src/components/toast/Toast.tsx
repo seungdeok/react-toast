@@ -13,7 +13,7 @@ const exitAnimation = (factor: number) => keyframes`
 100% {transform: translate3d(0,${factor * -150}%,-1px) scale(.6); opacity:0;}
 `;
 
-// animation: ${visible && css`${enterAnimation(1)} 0.35s forwards`};
+// animation: ${visible && css`${enterAnimation(toast.factor)} 0.35s forwards`};
 type ToastProps = {
   toast : Itoast
   removeToast: (id: string) => void;
@@ -22,7 +22,7 @@ type ToastProps = {
 const Toast = ({ toast, removeToast } : ToastProps) => {
   const [visible, setVisible] = useState(true);
   const style = css`
-    animation: ${visible ? css`${enterAnimation(1)} 0.35s forwards` : css`${exitAnimation(1)} 0.4s forwards`};
+    animation: ${visible ? css`${enterAnimation(toast.factor)} 0.35s forwards` : css`${exitAnimation(toast.factor)} 0.4s forwards`};
   `;
 
   useEffect(() => {

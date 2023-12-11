@@ -4,18 +4,35 @@
   height: 100vh;
 }
 
-#toast-root {
-  position: fixed;
-  left: 40px;
-  bottom: 24px;
-  z-index: 9999;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+botton {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-/* toastSample3 */
+/* Toast Example */
+.toast-example-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 80vw;
+  height: 100vh;
+  margin: auto;
+}
+
+.toast-example-type {
+  display: flex;
+  gap: 1rem;
+}
+
+.toast-example-position {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Toast Component */
 .toast-container {
   display: flex;
   flex-direction: column;
@@ -53,3 +70,4 @@ background-color: lightcoral;
 .toast.toast-info {
 background-color: lightblue;
 }
+
