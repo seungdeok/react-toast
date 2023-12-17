@@ -7,7 +7,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 /** @jsxImportSource @emotion/react */
 
-// const slideInCenter = (factor: number) => keyframes`
+// const slideInCenterTop = (factor: number) => keyframes`
 // 0% {transform: translate3d(0,${factor * -200}%,0) scale(.6); opacity:.5;}
 // 100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
 // `;
@@ -17,14 +17,24 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 // 100% {transform: translate3d(0,${factor * -150}%,-1px) scale(.6); opacity:0;}
 // `;
 
-const slideInCenter = keyframes`
+const slideInCenterTop = keyframes`
 0% {transform: translate3d(0,-200%,0) scale(.6); opacity:.5;}
 100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
 `;
 
-const slideOutCenter = keyframes`
+const slideOutCenterTop = keyframes`
 0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
 100% {transform: translate3d(0,-150%,-1px) scale(.6); opacity:0;}
+`;
+
+const slideInCenterBottom = keyframes`
+0% {transform: translate3d(0,200%,0) scale(.6); opacity:.5;}
+100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
+`;
+
+const slideOutCenterBottom = keyframes`
+0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
+100% {transform: translate3d(0,150%,-1px) scale(.6); opacity:0;}
 `;
 
 const slideInRight = keyframes`
@@ -63,8 +73,9 @@ const getAnimation = (toastPosition: ToastPosition) => {
         case 'bottom-left':
             return [slideInLeft, slideOutLeft];
         case 'top-center':
+            return [slideInCenterTop, slideOutCenterTop];
         case 'bottom-center':
-            return [slideInCenter, slideOutCenter];
+            return [slideInCenterBottom, slideOutCenterBottom];
         case 'top-right':
         case 'bottom-right':
             return [slideInRight, slideOutRight];
