@@ -56,7 +56,6 @@ botton {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: center;
 }
 
 .toast .toast-message {
@@ -64,20 +63,17 @@ botton {
 }
 .check-circle-success {
   color: #4CAF50;
-  position: absolute;
-  left: 10%;
+  padding: 0 7px 0 10px;
 }
 
 .check-circle-error {
   color: #E53935;
-  position: absolute;
-  left: 10%;
+  padding: 0 7px 0 10px;
 }
 
 .check-circle-info {
   color: #2196F3;
-  position: absolute;
-  left: 10%;
+  padding: 0 7px 0 10px;
 }
 
 .check-circle-loading {
