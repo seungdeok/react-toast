@@ -1,28 +1,95 @@
 import React, { useEffect, useState } from 'react';
-import { Itoast } from './useToast';
+import { Itoast, ToastPosition } from './useToast';
 import { css, keyframes } from "@emotion/react";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 /** @jsxImportSource @emotion/react */
 
-const enterAnimation = (factor: number) => keyframes`
-0% {transform: translate3d(0,${factor * -200}%,0) scale(.6); opacity:.5;}
+// const slideInCenter = (factor: number) => keyframes`
+// 0% {transform: translate3d(0,${factor * -200}%,0) scale(.6); opacity:.5;}
+// 100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
+// `;
+
+// const slideOutCenter = (factor: number) => keyframes`
+// 0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
+// 100% {transform: translate3d(0,${factor * -150}%,-1px) scale(.6); opacity:0;}
+// `;
+
+const slideInCenter = keyframes`
+0% {transform: translate3d(0,-200%,0) scale(.6); opacity:.5;}
 100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
 `;
 
-const exitAnimation = (factor: number) => keyframes`
+const slideOutCenter = keyframes`
 0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
-100% {transform: translate3d(0,${factor * -150}%,-1px) scale(.6); opacity:0;}
+100% {transform: translate3d(0,-150%,-1px) scale(.6); opacity:0;}
 `;
 
-// animation: ${visible && css`${enterAnimation(toast.factor)} 0.35s forwards`};
+const slideInRight = keyframes`
+0% {transform: translate3d(110%, 0, 0);}
+80% {transform: translate3d(-10%, 0, 0);}
+100% {transform: translate3d(0, 0, 0);}
+`
+
+const slideInLeft = keyframes`
+0% {transform: translate3d(-110%, 0, 0);}
+80% {transform: translate3d(10%, 0, 0);}
+100% {transform: translate3d(0, 0, 0);}
+`
+
+const slideOutRight = keyframes`
+0% {transform: translate3d(0, 0, 0);}
+20% {transform: translate3d(-10%, 0, 0);}
+100% {transform: translate3d(110%, 0, 0);}
+`;
+
+const slideOutLeft = keyframes`
+0% {transform: translate3d(0, 0, 0);}
+20% {transform: translate3d(10%, 0, 0);}
+100% {transform: translate3d(-110%, 0, 0);}
+`;
+
+
 type ToastProps = {
   toast : Itoast
   removeToast: (id: string) => void;
 };
 
+const getAnimation = (toastPosition: ToastPosition) => {
+    switch (toastPosition) {
+        case 'top-left':
+        case 'bottom-left':
+            return [slideInLeft, slideOutLeft];
+        case 'top-center':
+        case 'bottom-center':
+            return [slideInCenter, slideOutCenter];
+        case 'top-right':
+        case 'bottom-right':
+            return [slideInRight, slideOutRight];
+        
+        default:
+            console.log("Invalid Position: ", toastPosition);
+            return [];
+    }
+}
+
+const iconTypes = {
+    success: { icon: CheckCircleIcon, className: 'check-circle-success' },
+    error: { icon: ErrorIcon, className: 'check-circle-error' },
+    info: { icon: InfoIcon, className: 'check-circle-info' },
+    loading: { icon: AutorenewIcon, className: 'check-circle-load' },
+};
+
+// animation: ${visible && css`${toastAnimation[0]} 0.35s forwards`};
+// animation: ${visible ? css`${toastAnimation[0]} 0.35s forwards` : css`${toastAnimation[1]} 0.4s forwards`};
 const Toast = ({ toast, removeToast } : ToastProps) => {
   const [visible, setVisible] = useState(true);
+  const toastAnimation = getAnimation(toast.position);
+  const { icon: IconComponent, className: iconClassName } = iconTypes[toast.type];
   const style = css`
-    animation: ${visible ? css`${enterAnimation(toast.factor)} 0.35s forwards` : css`${exitAnimation(toast.factor)} 0.4s forwards`};
+    animation: ${visible ? css`${toastAnimation[0]} 0.35s forwards` : css`${toastAnimation[1]} 0.4s forwards`};
   `;
 
   useEffect(() => {
@@ -40,7 +107,9 @@ const Toast = ({ toast, removeToast } : ToastProps) => {
 
   return (
     <div className={`toast toast-${toast.type}`} css={style} >
-      {toast.message}
+        <IconComponent className={iconClassName} />
+        <div className='toast-icon'></div>
+        <p className='toast-message'>{toast.message}</p>
     </div>
   );
 };

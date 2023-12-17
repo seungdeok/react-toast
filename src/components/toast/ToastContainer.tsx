@@ -10,7 +10,7 @@ const ToastContainer = ({ toasts, removeToast }: ToastContainerType) => {
   return (
     <div className="toast-container">
       {toasts.map((toast, index) => {
-        const styles = toast.toastPosition;
+        const styles = toast.stackStyle;
 
         return (
           <div

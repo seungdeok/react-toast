@@ -48,10 +48,10 @@ botton {
 .toast {
   will-change: transform;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+  background-color: #FFF;
   width: 180px;
   height: 45px;
-  border-radius: 8px;
-  border: 2px solid #FFF;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
@@ -59,15 +59,35 @@ botton {
   justify-content: center;
 }
 
-.toast.toast-success {
-background-color: lightgreen;
+.toast .toast-message {
+  font-size: 0.9em;
+}
+.check-circle-success {
+  color: #4CAF50;
+  position: absolute;
+  left: 10%;
 }
 
-.toast.toast-error {
-background-color: lightcoral;
+.check-circle-error {
+  color: #E53935;
+  position: absolute;
+  left: 10%;
 }
 
-.toast.toast-info {
-background-color: lightblue;
+.check-circle-info {
+  color: #2196F3;
+  position: absolute;
+  left: 10%;
 }
+
+.check-circle-loading {
+  color: #eee;
+  position: absolute;
+  left: 10%;
+}
+
+
+
+
+
 

@@ -10,7 +10,7 @@ export type ToastPosition =
   | 'bottom-center'
   | 'bottom-right'
 
-export type ToastAreaPosition = (index:number) => {
+export type ToastStackStylesTypes = (index:number) => {
   top?: number | string;
   bottom?: number | string;
   left?: number | string;
@@ -28,13 +28,14 @@ export type AddToastType = {
 export interface Itoast {
   id: string;
   type: ToastActionType;
-  toastPosition: ToastAreaPosition;
+  position: ToastPosition;
+  stackStyle: ToastStackStylesTypes;
   factor: number;
   message: string;
   duration: number;
 }
 
-const toastAreaPosition = {
+const toastStackStyles = {
     'top-left': (index : number) => ({
         top: 60 * index,
         left: 0,
@@ -74,15 +75,25 @@ const useToast = () => {
 
   const addToast = ({message, type= 'info',position= 'top-right', duration=3000}: AddToastType) => {
     const id = Math.random().toString(36).substr(2, 9);
-    const toastPosition =  toastAreaPosition[position];
+    const stackStyle =  toastStackStyles[position];
     const factor = position.split('-')[0] === 'top' ? 1 : -1;
 
-    setToasts([{ id, type, toastPosition, factor, message, duration}, ...toasts]);
+    setToasts([{ id, type, position, stackStyle, factor, message, duration}, ...toasts]);
   };
 
   const removeToast = (id: string) => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
   };
+   
+  /* When Click Another Type of Position Button */
+  const changAllToastsPos = (toasts : Itoast[], stackStyle: ToastStackStylesTypes, factor: number) => {
+    toasts.map(v => {
+        v.stackStyle = stackStyle;
+        v.factor = factor;
+    })
+
+    return toasts;
+  }
 
 
   return { toasts, addToast, removeToast };

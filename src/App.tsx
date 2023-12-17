@@ -12,7 +12,7 @@ function App() {
         <div className="toast-example-type">
           <button className="action-btn" onClick={() => addToast({message:"INFO", type:"info", position:"top-right"})}>INFO</button>
           <button className="action-btn" onClick={() => addToast({message:"ERROR", type:"error", position:"top-right"})}>ERROR</button>
-          <button className="action-btn" onClick={() => addToast({message:"SUCCRESS", type:"success", position:"top-right"})}>SUCCESS</button>
+          <button className="action-btn" onClick={() => addToast({message:"SUCCESS", type:"success", position:"top-right"})}>SUCCESS</button>
         </div>
         <div className="toast-example-position">
           <button className="action-btn" onClick={() => addToast({message:"Top-Right", type:"info", position:"top-right"})}>Top-Right</button>
